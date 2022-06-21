@@ -1,17 +1,14 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import recipeReducer from './reducers/recipeReducer'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import thunkMiddleware from 'redux-thunk';
 import { initialState } from './initialState'
 
 
-const reducer = combineReducers({
-    recipeReducer,
-})
-
+const composedEnhancer = applyMiddleware(thunkMiddleware);
 
 
 export const store = createStore(
     recipeReducer,
-    initialState,
+    composedEnhancer,
     window.devToolsExtension ? window.devToolsExtension() : undefined
 )

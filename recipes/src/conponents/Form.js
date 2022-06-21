@@ -1,6 +1,7 @@
 import {useMemo, useState} from 'react'
 import { useSelector,useDispatch } from "react-redux";
 import '../style/form.css';
+import addRecipe from '../actions/addRecipe';
 
 export default function Form(){
     //recipe title, ingredients, and instructions
@@ -9,16 +10,13 @@ export default function Form(){
     const [instruction,setInstruction] = useState("");
     const dispatch = useDispatch();
 
-    const addRecipe = () =>{
-        dispatch({
-            type:"addRecipe",
-            data:{
+    const adRecipe = () =>{
+        dispatch(addRecipe({
                 title,
                 ingredient,
                 instruction,
-            }
-        });
-        resetForm();
+            }));
+        // resetForm();
     }
 
     const resetForm = () =>{
@@ -48,7 +46,7 @@ export default function Form(){
                 <input type="text" name="name" value={instruction} onChange={(e)=>setInstruction(e.target.value)}/>
             </label>
             </p>
-            <input type="button" value="Add" onClick={addRecipe}/>
+            <input type="button" value="Add" onClick={adRecipe}/>
             <input type="reset" value="Reset" onClick={resetForm}/>
         </form>
     </div>
