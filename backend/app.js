@@ -3,11 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+const mongoose = require('mongoose');
 var recipesRouter = require('./routes/recipes');
 var usersRouter = require('./routes/users');
-
+const config = require('./config/config.js');
 var app = express();
+
 
 
 
@@ -46,5 +47,13 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+mongoose
+.connect(
+config.database,
+{ useNewUrlParser: true ,useUnifiedTopology: true}
+)
+.then(() => console.log('MongoDB Connected'))
+.catch(err => console.log(err));
 
 module.exports = app;

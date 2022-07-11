@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 
@@ -29,6 +29,12 @@ export default function InstructionDialog(props){
     const [instruction,setInstruction] = useState(props.recipe.instruction);
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        setTitle(props.recipe.title);
+        setIngredient(props.recipe.ingredient);
+        setInstruction(props.recipe.instruction);
+    }, [props]);
+
     const openDialog = () =>{
         setOpen(true);
     }
@@ -38,7 +44,7 @@ export default function InstructionDialog(props){
     }
 
     const deleteR = () =>{
-        dispatch(deleteRecipe(props.recipe));
+        dispatch(deleteRecipe(props.recipe._id));
     }
 
     const updateR = () =>{
@@ -46,7 +52,7 @@ export default function InstructionDialog(props){
             title,
             ingredient,
             instruction,
-            id:props.recipe.id,
+            id:props.recipe._id,
         }));
     }
     
@@ -54,8 +60,8 @@ export default function InstructionDialog(props){
     return (
         (
             <Item >
-            <TextField id="outlined-1"  variant="outlined" onChange={(e)=>setTitle(e.target.value)} defaultValue={title} />
-            <TextField id="outlined-2" variant="outlined" onChange={(e)=>setIngredient(e.target.value)} defaultValue={ingredient}/>
+            <TextField id="outlined-1"  variant="outlined" onChange={(e)=>setTitle(e.target.value)} value={title} />
+            <TextField id="outlined-2" variant="outlined" onChange={(e)=>setIngredient(e.target.value)} value={ingredient}/>
             <Button variant="outlined" onClick={openDialog}>View</Button>
             <Button variant="outlined" onClick={deleteR}>Delete</Button>
             <Button variant="outlined" onClick={updateR}>Update</Button>

@@ -1,6 +1,6 @@
-export default function updateRecipe(recipe){
+export default function updateRecipe(id){
     return dispatch =>{
-        fetch(`http://localhost:3000/recipes/${recipe.id}`,{
+        fetch(`http://localhost:3000/recipes/${id}`,{
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
