@@ -10,11 +10,15 @@ const config = require('./config/config.js');
 var app = express();
 
 
-
+app.use(express.static(path.join(__dirname, 'client/build')))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'))
+})
 
 app.use(logger('dev'));
 app.use(express.json());
