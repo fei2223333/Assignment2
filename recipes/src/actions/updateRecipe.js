@@ -1,6 +1,6 @@
 export default function updateRecipe(recipe){
     return dispatch =>{
-        fetch(`http://localhost:3000/recipes/${recipe.id}`,{
+        fetch(`/recipes/${recipe.id}`,{
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',

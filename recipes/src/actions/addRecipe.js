@@ -1,7 +1,7 @@
 
 export default function addRecipe(recipe){
     return dispatch =>{
-        fetch('http://localhost:3000/recipes',{
+        fetch('/recipes',{
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

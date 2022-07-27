@@ -1,7 +1,7 @@
 
 export default function fetchRecipe(){
     return dispatch =>{
-        fetch('http://localhost:3000/recipes',{
+        fetch('/recipes',{
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
