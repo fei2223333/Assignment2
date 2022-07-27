@@ -22,4 +22,4 @@ jobs:
     - name: access recipes
       run: cd recipes
     - name: build recipes 
-      run: npm build
+      run: npm run build
